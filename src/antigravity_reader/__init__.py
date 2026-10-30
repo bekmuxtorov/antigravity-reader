@@ -7,7 +7,7 @@ conversations, agent traces, and artifact reports.
 
 __title__ = "antigravity-reader"
 __version__ = "1.0.0"
-__author__ = "Bekzod Mukhtorov"
+__author__ = "Asadbek Muxtorov"
 __license__ = "MIT"
 
 from .config import Config

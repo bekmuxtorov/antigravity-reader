@@ -10,7 +10,7 @@ readme = "README.md"
 requires-python = ">=3.8"
 license = { text = "MIT" }
 authors = [
-    { name = "Bekzod Mukhtorov", email = "asadbekmuxtorov2@gmail.com" }
+    { name = "Asadbek Muxtorov", email = "asadbekmuxtorov2@gmail.com" }
 ]
 keywords = [
     "antigravity",

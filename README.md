@@ -181,4 +181,4 @@ PYTHONPATH=src python3 -m unittest discover -s tests -p "test_*.py"
 ## 📄 License
 
 This project is open-source software licensed under the [MIT License](LICENSE).  
-Copyright (c) 2026 **Bekzod Mukhtorov**.
+Copyright (c) 2026 **Asadbek Muxtorov**.
