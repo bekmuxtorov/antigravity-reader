@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Antigravity Reader — AI Natijalarini O'qish Platformasi</title>
+  <meta name="description" content="Antigravity AI tomonidan yaratilgan barcha javoblar va tahlillarni qulay va chiroyli o'qish uchun maxsus platforma.">
+  
+  <!-- Modern Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- Highlight.js code theme -->
+  <link rel="stylesheet" href="vendor/highlight.min.css">
+  
+  <!-- Custom Vanilla CSS -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Ambient background glow elements -->
+  <div class="ambient-glow glow-top-left"></div>
+  <div class="ambient-glow glow-bottom-right"></div>
+
+  <div class="layout-wrapper">
+    <!-- Header -->
+    <header class="navbar">
+      <div class="nav-container">
+        <!-- Brand -->
+        <div class="nav-brand">
+          <div class="brand-badge">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
+              <polyline points="2 17 12 22 22 17"></polyline>
+              <polyline points="2 12 12 17 22 12"></polyline>
+            </svg>
+          </div>
+          <div class="brand-text">
+            <h1 class="brand-name">Antigravity Reader</h1>
+            <span class="brand-tagline">Maksimal qulaylikda o'qish uchun</span>
+          </div>
+        </div>
+
+        <!-- Conversation Switcher & Status -->
+        <div class="nav-center">
+          <div class="select-wrapper" title="Barcha suhbatlar ro'yxati">
+            <svg class="select-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+            </svg>
+            <select id="conv-select" class="conv-select" aria-label="Suhbatni tanlash">
+              <option value="">Suhbatlar yuklanmoqda...</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Controls: Live indicator, Theme, Font size, Export -->
+        <div class="nav-actions">
+          <div id="live-indicator" class="live-pill connected" title="Yangi javob kelishi bilan sahifa avtomatik yangilanadi">
+            <span class="pulse-dot"></span>
+            <span id="live-text">Jonli bog'langan</span>
+          </div>
+
+          <!-- Theme Mode Switcher -->
+          <div class="theme-switcher" title="Mavzuni tanlash">
+            <button id="theme-btn-dark" class="btn-theme active" data-theme="dark" title="Dark (Qorong'i)">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+              </svg>
+              <span>Dark</span>
+            </button>
+            <button id="theme-btn-book" class="btn-theme" data-theme="book" title="Kitob rejimi — Ko'zni asraydigan iliq qog'oz">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+                <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+              </svg>
+              <span>📖 Kitob</span>
+            </button>
+            <button id="theme-btn-light" class="btn-theme" data-theme="light" title="Light (Yorug')">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="5"></circle>
+                <line x1="12" y1="1" x2="12" y2="3"></line>
+                <line x1="12" y1="21" x2="12" y2="23"></line>
+                <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+              </svg>
+              <span>Light</span>
+            </button>
+          </div>
+
+          <!-- Reading helpers: Font size -->
+          <div class="font-controls" title="Matn o'lchamini o'zgartirish">
+
+            <button id="btn-font-dec" class="btn-tool" aria-label="Kichikroq shrift">A-</button>
+            <span id="font-size-label" class="font-label">100%</span>
+            <button id="btn-font-inc" class="btn-tool" aria-label="Kattaroq shrift">A+</button>
+          </div>
+
+          <!-- Width Toggle -->
+          <button id="btn-toggle-width" class="btn-tool" title="Keng/Tor o'qish rejimi" aria-label="Kenglikni almashtirish">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+              <line x1="9" y1="3" x2="9" y2="21"></line>
+              <line x1="15" y1="3" x2="15" y2="21"></line>
+            </svg>
+          </button>
+
+          <!-- Export -->
+          <a id="btn-export-md" class="btn-action" href="#" download title="Suhbatni Markdown formatida yuklab olish">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+              <polyline points="7 10 12 15 17 10"></polyline>
+              <line x1="12" y1="15" x2="12" y2="3"></line>
+            </svg>
+            <span>Yuklab olish (.md)</span>
+          </a>
+
+          <!-- Hide Navbar Button -->
+          <button id="btn-hide-navbar" class="btn-tool btn-hide-nav" title="Navbarni yashirish (Fokus / To'liq ekran rejimi)" aria-label="Navbarni yashirish">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M18 15l-6-6-6 6"/>
+            </svg>
+            <span class="hide-text">Yashirish</span>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <!-- Floating Restore Navbar Button -->
+    <button id="btn-show-navbar" class="floating-show-nav" title="Navbarni qaytarish (yoki Esc bosing)" aria-label="Navbarni ko'rsatish">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M6 9l6 6 6-6"/>
+      </svg>
+      <span>Navbarni ko'rsatish</span>
+    </button>
+
+
+    <!-- Sub-bar: Search and Navigation Jump -->
+    <div class="sub-bar">
+      <div class="sub-bar-container">
+        <!-- Quick search -->
+        <div class="search-box">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="11" cy="11" r="8"></circle>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+          </svg>
+          <input type="text" id="filter-input" placeholder="Matn yoki kod ichidan tezkor qidirish..." autocomplete="off">
+          <button id="clear-search" class="clear-search-btn" style="display:none;">&times;</button>
+        </div>
+
+        <!-- Quick Jump Table of Turns -->
+        <div id="quick-jump-chips" class="jump-chips">
+          <span class="jump-title">Navbat:</span>
+          <!-- Chips injected by JS -->
+        </div>
+
+        <!-- Stats -->
+        <div class="conv-stats">
+          <span id="stat-total-turns">0 ta javob</span>
+          <span class="stat-divider">•</span>
+          <span id="stat-last-time">—</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Main Reading Container -->
+    <main id="reader-container" class="reader-container">
+      <!-- Loading state -->
+      <div id="loading-state" class="center-message">
+        <div class="spinner"></div>
+        <p>Antigravity suhbatlari yuklanmoqda...</p>
+      </div>
+
+      <!-- Feed of Turns -->
+      <div id="turns-feed" class="turns-feed">
+        <!-- Dynamically injected -->
+      </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="app-footer">
+      <p>Antigravity Reader &bull; Port: <code>5050</code> &bull; Yangi natijalar berilishi bilan real-time aks etadi.</p>
+    </footer>
+  </div>
+
+  <!-- Toast Notification -->
+  <div id="toast" class="toast">Nusxa olindi!</div>
+
+  <!-- Vendor Scripts -->
+  <script src="vendor/marked.min.js"></script>
+  <script src="vendor/highlight.min.js"></script>
+  <!-- Custom Application Logic -->
+  <script src="app.js"></script>
+</body>
+</html>

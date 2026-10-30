@@ -1,0 +1,49 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "antigravity-reader"
+version = "1.0.0"
+description = "A standalone, zero-dependency, real-time reader platform for Google Antigravity AI outputs."
+readme = "README.md"
+requires-python = ">=3.8"
+license = { text = "MIT" }
+authors = [
+    { name = "Bekzod Mukhtorov", email = "asadbekmuxtorov2@gmail.com" }
+]
+keywords = [
+    "antigravity",
+    "ai",
+    "reader",
+    "agent",
+    "transcript",
+    "sse",
+    "real-time",
+    "markdown"
+]
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Software Development :: User Interfaces",
+    "Topic :: Utilities"
+]
+dependencies = []
+
+[project.scripts]
+antigravity-reader = "antigravity_reader.cli:main"
+
+[project.urls]
+Homepage = "https://github.com/bekmuxtorov/antigravity-reader"
+Repository = "https://github.com/bekmuxtorov/antigravity-reader.git"
+Issues = "https://github.com/bekmuxtorov/antigravity-reader/issues"
+
+[tool.setuptools.packages.find]
+where = ["src"]

@@ -1,0 +1,2 @@
+# Antigravity Reader requires ZERO external runtime dependencies!
+# Python 3.8+ Standard Library is all you need.
